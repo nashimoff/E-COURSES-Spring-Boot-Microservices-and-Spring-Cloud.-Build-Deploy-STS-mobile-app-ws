@@ -40,16 +40,26 @@ public class UserController {
 		returnValue.setFirstName("Sergey");
 		returnValue.setLastName("Kargopolov");
 		
-		return new ResponseEntity<UserRest>(HttpStatus.BAD_REQUEST);  
+		return new ResponseEntity<UserRest>(returnValue, HttpStatus.OK);  
 	}
 	
-	@PostMapping(consumes = { 
+	@PostMapping(
+			consumes = { 
 			MediaType.APPLICATION_XML_VALUE, 
 			MediaType.APPLICATION_JSON_VALUE 
-			})
-	public String createUser(@RequestBody UserDetailsRequestModel userDetails)
+			}, 
+			produces = { 
+					MediaType.APPLICATION_XML_VALUE, 
+					MediaType.APPLICATION_JSON_VALUE 
+					})
+	public  ResponseEntity<UserRest> createUser(@RequestBody UserDetailsRequestModel userDetails)
 	{
-		return "create user was called";
+		UserRest returnValue = new UserRest();
+		returnValue.setEmail(userDetails.getEmail());
+		returnValue.setFirstName(userDetails.getFirstName());
+		returnValue.setLastName(userDetails.getLastName());
+		
+		return new ResponseEntity<UserRest>(returnValue, HttpStatus.OK);  
 	}
 	
 	@PutMapping
