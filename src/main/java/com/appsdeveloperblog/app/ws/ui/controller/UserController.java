@@ -1,5 +1,7 @@
 package com.appsdeveloperblog.app.ws.ui.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -52,7 +54,7 @@ public class UserController {
 					MediaType.APPLICATION_XML_VALUE, 
 					MediaType.APPLICATION_JSON_VALUE 
 					})
-	public  ResponseEntity<UserRest> createUser(@RequestBody UserDetailsRequestModel userDetails)
+	public  ResponseEntity<UserRest> createUser(@Valid @RequestBody UserDetailsRequestModel userDetails)
 	{
 		UserRest returnValue = new UserRest();
 		returnValue.setEmail(userDetails.getEmail());
