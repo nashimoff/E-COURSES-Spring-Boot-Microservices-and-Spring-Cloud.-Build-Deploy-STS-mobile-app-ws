@@ -77,7 +77,14 @@ public class UserController {
 		return new ResponseEntity<UserRest>(returnValue, HttpStatus.OK);  
 	}
 	
-	@PutMapping
+	@PutMapping(consumes = { 
+			MediaType.APPLICATION_XML_VALUE, 
+			MediaType.APPLICATION_JSON_VALUE 
+			}, 
+			produces = { 
+					MediaType.APPLICATION_XML_VALUE, 
+					MediaType.APPLICATION_JSON_VALUE 
+					}))
 	public String updateUser()
 	{
 		return "update user was called";
