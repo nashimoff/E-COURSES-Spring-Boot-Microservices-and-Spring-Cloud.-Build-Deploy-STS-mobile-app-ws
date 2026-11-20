@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.appsdeveloperblog.app.ws.ui.model.request.UpdateUserDetailsRequestModel;
 import com.appsdeveloperblog.app.ws.ui.model.request.UserDetailsRequestModel;
 import com.appsdeveloperblog.app.ws.ui.model.response.UserRest;
 
@@ -77,15 +78,15 @@ public class UserController {
 		return new ResponseEntity<UserRest>(returnValue, HttpStatus.OK);  
 	}
 	
-	@PutMapping(consumes = { 
+	@PutMapping(path="/{userId}", consumes = { 
 			MediaType.APPLICATION_XML_VALUE, 
 			MediaType.APPLICATION_JSON_VALUE 
 			}, 
 			produces = { 
 					MediaType.APPLICATION_XML_VALUE, 
 					MediaType.APPLICATION_JSON_VALUE 
-					}))
-	public String updateUser()
+					})
+	public String updateUser(@PathVariable String userId, @Valid @RequestBody UpdateUserDetailsRequestModel userDetails)
 	{
 		return "update user was called";
 	}
