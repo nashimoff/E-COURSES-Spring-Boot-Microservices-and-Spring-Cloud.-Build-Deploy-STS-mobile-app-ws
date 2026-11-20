@@ -86,9 +86,15 @@ public class UserController {
 					MediaType.APPLICATION_XML_VALUE, 
 					MediaType.APPLICATION_JSON_VALUE 
 					})
-	public String updateUser(@PathVariable String userId, @Valid @RequestBody UpdateUserDetailsRequestModel userDetails)
+	public UserRest updateUser(@PathVariable String userId, @Valid @RequestBody UpdateUserDetailsRequestModel userDetails)
 	{
-		return "update user was called";
+		UserRest storedUserDetails = users.get(userId);
+		storedUserDetails.setFirstName(userDetails.getFirstName());
+		storedUserDetails.setLastName(userDetails.getLastName());
+		
+		users.put(userId, storedUserDetails);
+		
+		return storedUserDetails;
 	}
 	
 	@DeleteMapping
